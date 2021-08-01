@@ -1,0 +1,83 @@
+<!--
+File: index.html
+GUI Assignment: Creating A Multiplicayion Table with Java script
+Abhi Jhaveri, UMass Lowell Computer Science, Abhi_Jhaveri@student.uml.edu
+Copyright (c) 2021 by Abhi. All rights reserved. May be freely copied or
+excerpted for educational purposes with credit to the author.
+updated by AJ on July 31, 2021
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multiplation</title>
+</head>
+<script>
+    function formSumbit(){
+        //Clear Table
+        var table = document.getElementById("table");
+        table.innerHTML = "";
+
+        //Get the data from the form
+        var minRow = document.getElementById("min-row").value;
+        var maxRow = document.getElementById("max-row").value;
+        var minColumn = document.getElementById("min-column").value;
+        var maxColumn = document.getElementById("max-column").value;
+
+        //log the data in the console
+        console.log("Minimum Row: " + minRow + " Maximum Row: " + maxRow)
+        console.log("Minimum Column: " + minColumn + " Maximum Column: " + maxColumn)
+        generateTable(minRow, maxRow, minColumn, maxColumn)
+
+        return false
+    }
+
+    function generateTable(minRow, maxRow, minColumn, maxColumn){
+        //Get table Element
+        var table = document.getElementById("table");
+        // Create a header row
+        var th_row = table.insertRow(0);
+
+        //First Cell Should be blank
+        th_row.insertCell(0)
+        //Fill the header row
+        for(var i = minRow; i <= maxRow; i++){
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = i;
+            th_row.appendChild(headerCell);
+        }
+
+        //Fill the table
+        for(var i = minColumn; i <= maxColumn; i++){
+            var row = table.insertRow();
+            //First cell should be the column header
+            var headerCell = document.createElement("TH");
+            headerCell.innerHTML = i;
+            row.appendChild(headerCell);
+            for(var j = minRow; j <= maxRow; j++){
+                //Add the multiplication data
+                var cell = row.insertCell(-1);
+                cell.innerHTML = i*j;
+            }
+        }
+    }
+</script>
+<body>
+    <!--Form-->
+    <form onsubmit="return formSumbit(this)">
+        <label for="min-row">Minimum Row</label>
+        <input type="number" id="min-row">
+        <label for="max-row">Maximum Row</label>
+        <input type="number" id="max-row">
+        <label for="min-column">Mainimum Column</label>
+        <input type="number" id="min-column">
+        <label for="max-column">Maximum Column</label>
+        <input type="number" id="max-column">
+        <input type="submit" value="Submit">
+    </form>
+    <!--Table-->
+    <table id="table">
+
+    </table>
+</body>
+</html>
