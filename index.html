@@ -10,58 +10,15 @@ updated by AJ on July 31, 2021
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Multiplation</title>
+    <meta charset="utf-8">
+    <title>Multiplication Table </title>
+    <link rel="stylesheet" href="design.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- JQuerry Validation source-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.js"></script>
 </head>
-<script>
-    function formSumbit(){
-        //Clear Table
-        var table = document.getElementById("table");
-        table.innerHTML = "";
 
-        //Get the data from the form
-        var minRow = document.getElementById("min-row").value;
-        var maxRow = document.getElementById("max-row").value;
-        var minColumn = document.getElementById("min-column").value;
-        var maxColumn = document.getElementById("max-column").value;
-
-        //log the data in the console
-        console.log("Minimum Row: " + minRow + " Maximum Row: " + maxRow)
-        console.log("Minimum Column: " + minColumn + " Maximum Column: " + maxColumn)
-        generateTable(minRow, maxRow, minColumn, maxColumn)
-
-        return false
-    }
-
-    function generateTable(minRow, maxRow, minColumn, maxColumn){
-        //Get table Element
-        var table = document.getElementById("table");
-        // Create a header row
-        var th_row = table.insertRow(0);
-
-        //First Cell Should be blank
-        th_row.insertCell(0)
-        //Fill the header row
-        for(var i = minRow; i <= maxRow; i++){
-            var headerCell = document.createElement("TH");
-            headerCell.innerHTML = i;
-            th_row.appendChild(headerCell);
-        }
-
-        //Fill the table
-        for(var i = minColumn; i <= maxColumn; i++){
-            var row = table.insertRow();
-            //First cell should be the column header
-            var headerCell = document.createElement("TH");
-            headerCell.innerHTML = i;
-            row.appendChild(headerCell);
-            for(var j = minRow; j <= maxRow; j++){
-                //Add the multiplication data
-                var cell = row.insertCell(-1);
-                cell.innerHTML = i*j;
-            }
-        }
-    }
-</script>
 <body>
     <!--Form-->
     <form onsubmit="return formSumbit(this)">
@@ -79,5 +36,8 @@ updated by AJ on July 31, 2021
     <table id="table">
 
     </table>
+<script src="help.js"> 
+</script>
+
 </body>
 </html>
